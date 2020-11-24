@@ -33,18 +33,13 @@ public class changeRoom extends AppCompatActivity {
         confirmChangeRoomBtn = findViewById(R.id.confirmChangeRoomBtn);
         cancelChangeRoomBtn = findViewById(R.id.cancelChangeRoomBtn);
 
-
-        confirmChangeRoomBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                // ToDo: add change room function here
-                returnToMainActivity();
-            }
+        // ToDo: add change room function here
+        confirmChangeRoomBtn.setOnClickListener(v -> {
+            returnToMainActivity();
         });
 
-        cancelChangeRoomBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
+        cancelChangeRoomBtn.setOnClickListener(v -> {
                 returnToMainActivity();
-            }
         });
 
     }

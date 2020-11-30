@@ -17,10 +17,8 @@ import static com.example.tabletscreenjava.changeRoom.EXTRA_TEXT_ChangeRoom;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_TEXT = "com.example.application.example.EXTRA_TEXT";
     public TextView currentDayTextView;
     public Button changeRoom_Btn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +32,13 @@ public class MainActivity extends AppCompatActivity {
         currentDayTextView.setText(getCurrentDate());
         String example = getIntent().getStringExtra(EXTRA_TEXT_ChangeRoom);
         changeRoom_Btn.setText(example);
-        if(changeRoom_Btn.getText().equals("")){
+        if(changeRoom_Btn.getText().equals("")) {
             changeRoom_Btn.setText("Room 106");
         }
-
     }
-
 
     public void openChangeRoom(){
         Intent intent = new Intent(this, changeRoom.class);
-        intent.putExtra(EXTRA_TEXT, currentDayTextView.getText());
         startActivity(intent);
     }
 

@@ -8,7 +8,7 @@
     tools:context=".changeRoom">
 
     <Button
-        android:id="@+id/cancelChangeRoomBtn"
+        android:id="@+id/cancelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#E16868"
@@ -22,7 +22,7 @@
         app:strokeColor="#E8D9D9" />
 
     <Button
-        android:id="@+id/confirmChangeRoomBtn"
+        android:id="@+id/confirmBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
@@ -34,20 +34,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
         app:strokeColor="#E8D9D9" />
-
-    <TextView
-        android:id="@+id/ineedtext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.273" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/changeTextLayout"

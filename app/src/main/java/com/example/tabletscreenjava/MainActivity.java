@@ -10,10 +10,14 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static com.example.tabletscreenjava.changeRoom.EXTRA_TEXT_ChangeRoom;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_TEXT = "com.example.application.example.EXTRA_TEXT";
-    public static final String EXTRA_NUMBER = "com.example.application.example.EXTRA_NUMBER";
     public TextView currentDayTextView;
     public Button changeRoom_Btn;
 
@@ -25,8 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
         currentDayTextView = findViewById(R.id.currentDay_textView);
         changeRoom_Btn = findViewById(R.id.changeRoom_Btn);
-
         changeRoom_Btn.setOnClickListener(v -> openChangeRoom());
+
+        currentDayTextView.setText(getCurrentDate());
+        String example = getIntent().getStringExtra(EXTRA_TEXT_ChangeRoom);
+        changeRoom_Btn.setText(example);
+        if(changeRoom_Btn.getText().equals("")){
+            changeRoom_Btn.setText("Room 106");
+        }
 
     }
 
@@ -35,5 +45,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, changeRoom.class);
         intent.putExtra(EXTRA_TEXT, currentDayTextView.getText());
         startActivity(intent);
+    }
+
+    public static String getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now =  LocalDateTime.now();
+        return dtf.format(now);
     }
 }

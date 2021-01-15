@@ -8,6 +8,8 @@ public class Slots {
 
     private String slot;
 
+    private String teacher;
+
     private String status;
 
     public String getStart_time() {
@@ -20,6 +22,10 @@ public class Slots {
 
     public String getSlot() {
         return slot;
+    }
+
+    public String getTeacher() {
+        return teacher;
     }
 
     public String getStatus() {

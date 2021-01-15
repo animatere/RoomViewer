@@ -123,6 +123,7 @@
                 android:textAlignment="center" />s
 
             <TextView
+                android:id="@+id/Status_3"
                 android:layout_width="110sp"
                 android:layout_height="40sp"
                 android:padding="3dip"

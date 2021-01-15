@@ -1,4 +1,4 @@
-package com.example.tabletscreenjava;
+package com.example.tabletscreenjava.objects;
 
 public class Players {
 

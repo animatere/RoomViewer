@@ -1,4 +1,6 @@
-package com.example.tabletscreenjava;
+package com.example.tabletscreenjava.api;
+
+import com.example.tabletscreenjava.objects.Players;
 
 import java.util.List;
 

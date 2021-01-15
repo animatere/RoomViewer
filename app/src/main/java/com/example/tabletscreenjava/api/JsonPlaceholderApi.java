@@ -1,5 +1,7 @@
-package com.example.tabletscreenjava;
+package com.example.tabletscreenjava.api;
 
+
+import com.example.tabletscreenjava.objects.Post;
 
 import java.util.List;
 

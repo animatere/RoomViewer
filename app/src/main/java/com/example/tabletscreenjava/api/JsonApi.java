@@ -1,6 +1,7 @@
 package com.example.tabletscreenjava.api;
 
 
+import com.example.tabletscreenjava.objects.Occupancy;
 import com.example.tabletscreenjava.objects.Post;
 import com.example.tabletscreenjava.objects.Slots;
 
@@ -11,9 +12,6 @@ import retrofit2.http.GET;
 
 public interface JsonApi {
 
-    @GET("posts")
-    Call<List<Post>> getPosts();
-
-    @GET("slots")
-    Call<List<Slots>> getSlots();
+    @GET("api/database/read/occupancy")
+    Call<List<Occupancy>> getOccupancy();
 }

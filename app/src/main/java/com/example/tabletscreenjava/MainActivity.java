@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
     public TextView[] statusList = new TextView[9];
 
     // Mockserver
-    public String BASE_URL = "http://172.17.0.3:8080/castlemock/mock/rest/project/UxI733/application/AlDWMD/";
+    public String MOCK_URL = "http://172.17.0.3:8080/castlemock/mock/rest/project/UxI733/application/AlDWMD/";
     // RealServer
-//    public String BASE_URL = "http://patzab.de:3080/";
+    public String BASE_URL = "http://patzab.de:3080/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // get data from API
-        getOccupancy(BASE_URL);
+        getOccupancy(MOCK_URL);
         fillEmptyColumns();
 
     }

@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 
 public class changeRoom extends AppCompatActivity {
@@ -16,6 +16,7 @@ public class changeRoom extends AppCompatActivity {
     public Button confirmBtn;
     public Button cancelBtn;
     public TextInputEditText newRoomName;
+    public TextView versionName_changeRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,10 @@ public class changeRoom extends AppCompatActivity {
         confirmBtn = findViewById(R.id.confirmBtn);
         cancelBtn = findViewById(R.id.cancelBtn);
         newRoomName = findViewById(R.id.newRoomName);
+        versionName_changeRoom = findViewById(R.id.appVersion_textView2);
 
 
+        versionName_changeRoom.setText("Version " + BuildConfig.VERSION_NAME);
         confirmBtn.setOnClickListener(v -> {
             changeRoom();
         });

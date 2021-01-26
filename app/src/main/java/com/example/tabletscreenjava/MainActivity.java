@@ -2,7 +2,10 @@ package com.example.tabletscreenjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public Button changeRoom_Btn;
     public TextView[] teacherList = new TextView[9];
     public TextView[] statusList = new TextView[9];
-
+    public TextView versionName;
     // Mockserver
     public String MOCK_URL = "http://172.17.0.3:8080/castlemock/mock/rest/project/UxI733/application/AlDWMD/";
     // RealServer
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         initObjects();
 
         // event-handling
+        versionName.setText("Version " + BuildConfig.VERSION_NAME);
         changeRoom_Btn.setOnClickListener(v -> openChangeRoom());
         currentDayTextView.setText(getCurrentDate());
         String example = getIntent().getStringExtra(EXTRA_TEXT_ChangeRoom);
@@ -122,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         currentDayTextView = findViewById(R.id.currentDay_textView);
         changeRoom_Btn = findViewById(R.id.changeRoom_Btn);
 
+        versionName = findViewById(R.id.appVersion_textView);
         teacherList[0] = findViewById(R.id.Teacher_1);
         teacherList[1] = findViewById(R.id.Teacher_2);
         teacherList[2] = findViewById(R.id.Teacher_3);

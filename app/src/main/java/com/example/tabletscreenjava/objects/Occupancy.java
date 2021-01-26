@@ -32,7 +32,7 @@ public class Occupancy {
 
     private String area;
 
-    private int roomNumber;
+    private int roomnumber;
 
     private String status;
 
@@ -97,7 +97,7 @@ public class Occupancy {
     }
 
     public int getRoomNumber() {
-        return roomNumber;
+        return roomnumber;
     }
 
     public String getStatus() {

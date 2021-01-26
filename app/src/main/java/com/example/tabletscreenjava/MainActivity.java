@@ -86,16 +86,15 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 List<Occupancy> slots = response.body();
-                int counter = 0;
+
 
                 for(Occupancy slot : slots) {
-                    if (slot.getOccupancydate().equals(getCurrentDate())) {
+                    if (slot.getOccupancydate().equals(getCurrentDate()) & ("Room " + slot.getRoomNumber()).equals(changeRoom_Btn.getText())  ) {
                         teacherList[slot.getSlot_nr()].setText(slot.getLast_name());
                         statusList[slot.getSlot_nr()].setText(slot.getStatus());
                     } else {
 
                     }
-                    counter++;
                 }
             }
 

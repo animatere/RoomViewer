@@ -6,8 +6,6 @@ public class Occupancy {
 
     private String occupancydate;
 
-    private int slot_nr;
-
     private String start_time;
 
     private String end_time;
@@ -42,10 +40,6 @@ public class Occupancy {
 
     public String getOccupancydate() {
         return occupancydate;
-    }
-
-    public int getSlot_nr() {
-        return slot_nr;
     }
 
     public String getStart_time() {

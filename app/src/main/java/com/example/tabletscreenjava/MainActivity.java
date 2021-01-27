@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // get data from API
-        getOccupancy(MOCK_URL);
+        getOccupancyWithSlots(MOCK_URL);
         fillEmptyColumns();
 
     }
@@ -94,8 +94,48 @@ public class MainActivity extends AppCompatActivity {
 
                 for(Occupancy slot : slots) {
                     if (slot.getOccupancydate().equals(getCurrentDate()) & ("Room " + slot.getRoomNumber()).equals(changeRoom_Btn.getText())  ) {
-                        teacherList[slot.getSlot_nr()].setText(slot.getLast_name());
-                        statusList[slot.getSlot_nr()].setText(slot.getStatus());
+
+                    } else {
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Occupancy>> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+
+    public void getOccupancyWithSlots(String URL){
+        Retrofit retroFit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonApi jsonApi = retroFit.create(JsonApi.class);
+
+        Call<List<Occupancy>> call = jsonApi.getOccupancy();
+        call.enqueue(new Callback<List<Occupancy>>() {
+            @Override
+            public void onResponse(Call<List<Occupancy>> call, Response<List<Occupancy>> response) {
+                if(!response.isSuccessful()){
+                    System.out.println("Code: " + response.code());
+                }
+
+                List<Occupancy> slots = response.body();
+
+
+                for(Occupancy slot : slots) {
+                    if (slot.getOccupancydate().equals(getCurrentDate()) & ("Room " + slot.getRoomNumber()).equals(changeRoom_Btn.getText())  ) {
+                        int slotNumber = getSlotNumber(slot.getStart_time() + " - "+slot.getEnd_time());
+                        if(slotNumber > 8){
+                            System.out.println("Wrong Start or End time, cannot reach slot number with wrong times");
+                            continue;
+                        }
+                        teacherList[slotNumber].setText(slot.getLast_name());
+                        statusList[slotNumber].setText(slot.getStatus());
                     } else {
 
                     }
@@ -119,6 +159,32 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Already filled");
             }
         }
+    }
+
+    public int getSlotNumber(String time){
+
+
+        switch(time){
+            case "08:00 - 08:45":
+                return 0;
+            case "08:45 - 09:30":
+                return 1;
+            case "09:30 - 10:15":
+                return 2;
+            case "10:35 - 11:20":
+                return 3;
+            case "11:20 - 12:05":
+                return 4;
+            case "12:05 - 12:50":
+                return 5;
+            case "13:35 - 14:20":
+                return 6;
+            case "14:20 - 15:05":
+                return 7;
+            case "15:05 - 15:50":
+                return 8;
+        }
+        return 99;
     }
 
     public void initObjects(){

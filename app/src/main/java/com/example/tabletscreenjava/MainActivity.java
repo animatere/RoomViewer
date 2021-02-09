@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     public TextView[] teacherList = new TextView[9];
     public TextView[] statusList = new TextView[9];
     public TextView versionName;
-    // Mockserver
+    // Mock-Server
     public String MOCK_URL = "http://172.17.0.3:8080/castlemock/mock/rest/project/UxI733/application/AlDWMD/";
-    // RealServer
+    // Real-Server
     public String BASE_URL = "http://patzab.de:3080/";
 
     @Override
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         // event-handling
         versionName.setText("Version " + BuildConfig.VERSION_NAME);
+        System.out.println("App Version: " + BuildConfig.VERSION_NAME + " is running.");
         changeRoom_Btn.setOnClickListener(v -> openChangeRoom());
         currentDayTextView.setText(getCurrentDate());
         String example = getIntent().getStringExtra(EXTRA_TEXT_ChangeRoom);
@@ -57,11 +58,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // get data from API
-        getOccupancyWithSlots(MOCK_URL);
+        getOccupancyWithSlots(BASE_URL);
         fillEmptyColumns();
 
     }
 
+    // Open new Window for changing current Room
     public void openChangeRoom(){
         Intent intent = new Intent(this, changeRoom.class);
         startActivity(intent);
@@ -71,41 +73,6 @@ public class MainActivity extends AppCompatActivity {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDateTime now =  LocalDateTime.now();
         return dtf.format(now);
-    }
-
-    public void getOccupancy(String URL){
-        Retrofit retroFit = new Retrofit.Builder()
-                .baseUrl(URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonApi jsonApi = retroFit.create(JsonApi.class);
-
-        Call<List<Occupancy>> call = jsonApi.getOccupancy();
-        call.enqueue(new Callback<List<Occupancy>>() {
-            @Override
-            public void onResponse(Call<List<Occupancy>> call, Response<List<Occupancy>> response) {
-                if(!response.isSuccessful()){
-                    System.out.println("Code: " + response.code());
-                }
-
-                List<Occupancy> slots = response.body();
-
-
-                for(Occupancy slot : slots) {
-                    if (slot.getOccupancydate().equals(getCurrentDate()) & ("Room " + slot.getRoomNumber()).equals(changeRoom_Btn.getText())  ) {
-
-                    } else {
-
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Occupancy>> call, Throwable t) {
-                System.out.println(t.getMessage());
-            }
-        });
     }
 
     public void getOccupancyWithSlots(String URL){
@@ -161,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Slot-Mapper for every Lesson
     public int getSlotNumber(String time){
-
 
         switch(time){
             case "08:00 - 08:45":
@@ -187,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         return 99;
     }
 
+    // initialize all objects
     public void initObjects(){
 
         currentDayTextView = findViewById(R.id.currentDay_textView);

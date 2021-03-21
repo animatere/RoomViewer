@@ -10,6 +10,6 @@ import retrofit2.http.GET;
 
 public interface JsonApi {
 
-    @GET("api/database/read/occupancy")
+    @GET("api/database/read/occupancies")
     Call<List<Occupancy>> getOccupancy();
 }

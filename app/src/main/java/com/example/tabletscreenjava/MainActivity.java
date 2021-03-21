@@ -2,10 +2,7 @@ package com.example.tabletscreenjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // get data from API
-        getOccupancyWithSlots(BASE_URL);
+        getOccupancyWithSlots(MOCK_URL);
         fillEmptyColumns();
 
     }
@@ -93,16 +90,16 @@ public class MainActivity extends AppCompatActivity {
 
                 List<Occupancy> slots = response.body();
 
-
                 for(Occupancy slot : slots) {
-                    if (slot.getOccupancydate().equals(getCurrentDate()) & ("Room " + slot.getRoomNumber()).equals(changeRoom_Btn.getText())  ) {
+                    // checking current date, with occupancy date and checking room number with current room number on tablet
+                    if (slot.getDate().equals(getCurrentDate()) & ("Room " + slot.getRoomNumber()).equals(changeRoom_Btn.getText())  ) {
                         int slotNumber = getSlotNumber(slot.getStart_time() + " - "+slot.getEnd_time());
                         if(slotNumber > 8){
                             System.out.println("Wrong Start or End time, cannot reach slot number with wrong times");
                             continue;
                         }
-                        teacherList[slotNumber].setText(slot.getLast_name());
-                        statusList[slotNumber].setText(slot.getStatus());
+                        teacherList[slotNumber].setText(slot.getBooker());
+                        statusList[slotNumber].setText("Belegt");
                     } else {
 
                     }

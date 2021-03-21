@@ -2,44 +2,37 @@ package com.example.tabletscreenjava.objects;
 
 public class Occupancy {
 
-    private int id;
 
-    private String occupancydate;
+    private String date;
 
     private String start_time;
 
     private String end_time;
 
-    private int user_id;
+    private String booker;
 
-    private int room_id;
+    private String building;
 
-    private int status_id;
-
-    private String role;
-
-    private String first_name;
-
-    private String last_name;
-
-    private String department;
-
-    private String description;
-
-    private String location;
+    private int room_number;
 
     private String area;
 
-    private int roomnumber;
+    private String room_type;
 
-    private String status;
-
-    public int getId() {
-        return id;
+    public String getBuilding() {
+        return building;
     }
 
-    public String getOccupancydate() {
-        return occupancydate;
+    public String getArea() {
+        return area;
+    }
+
+    public String getRoom_type() {
+        return room_type;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getStart_time() {
@@ -50,51 +43,12 @@ public class Occupancy {
         return end_time;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public int getRoom_id() {
-        return room_id;
-    }
-
-    public int getStatus_id() {
-        return status_id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
     public int getRoomNumber() {
-        return roomnumber;
+        return room_number;
     }
 
-    public String getStatus() {
-        return status;
+    public String getBooker() {
+        return booker;
     }
+
 }
